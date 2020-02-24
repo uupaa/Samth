@@ -1,0 +1,73 @@
+{
+  "name": "samth",
+  "version": "0.0.1",
+  "description": "A compression logic.",
+  "keywords": [
+    "compression",
+    "TypeScript"
+  ],
+  "main": "lib/Samth.js",
+  "types": "lib/Samth.d.ts",
+  "rollup": {
+    "esm": {
+      "input": "lib/Samth.js",
+      "output": "lib/Samth.esm.js"
+    },
+    "es5": {
+      "input": "lib/Samth.js",
+      "output": "lib/Samth.es5.js",
+      "name": "SamthLib"
+    },
+    "cjs": {
+      "input": "lib/Samth.js",
+      "output": "lib/Samth.cjs.js"
+    }
+  },
+  "scripts": {
+    "prepublishOnly": "npm run build; npm run bundle:all",
+    "build": "npm run build:esm",
+    "build:esm": "tsc --build tsconfig.json",
+    "bundle": "npm run bundle:esm",
+    "bundle:esm": "rollup -c .rollup.esm.js",
+    "bundle:es5": "rollup -c .rollup.es5.js",
+    "bundle:cjs": "rollup -c .rollup.cjs.js",
+    "bundle:all": "npm run bundle:esm; npm run bundle:es5; npm run bundle:cjs",
+    "watch": "rollup -w -c .rollup.esm.js &",
+    "test": "npm run test:cjs",
+    "test:esm": "open https://localhost/GeoHex/test/esm.html",
+    "test:es5": "open https://localhost/GeoHex/test/es5.html",
+    "test:cjs": "node test/cjs.js",
+    "test:all": "npm run test:cjs; npm run test:es5; npm run test:esm",
+    "test:compat": "open https://localhost/GeoHex/test/v3.2.html",
+    "update": "ncu -u; npm i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uupaa/Samth.git"
+  },
+  "author": "uupaa.js@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/uupaa/Samth/issues"
+  },
+  "homepage": "https://github.com/uupaa/Samth#readme",
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "eslint": "^6.6.0",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^1.26.4",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-buble": "^0.19.8",
+    "rollup-plugin-cleanup": "^3.1.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-eslint": "^7.0.0",
+    "rollup-plugin-license": "^0.12.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-watch": "^4.3.1"
+  },
+  "unused_devDependencies": {
+    "request": "",
+    "execa": "^0.10.0"
+  }
+}
